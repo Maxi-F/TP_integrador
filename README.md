@@ -10,7 +10,7 @@
 # Ejercicio 2:
 ## Consigna:
 
-*Redactar un enunciado sobre un problema relacionado a las __P.A.S.O.__ y luego resolverlo. El ejerciciodebe contener como mínimo:*
+*Redactar un enunciado sobre un problema relacionado a las __P.A.S.O.__ y luego resolverlo. El ejercicio debe contener como mínimo:*
 
 - *Archivos.*
 - *Estructuras dinámicas.*
