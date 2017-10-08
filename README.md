@@ -7,6 +7,8 @@
 
 *que será ingresado al sistema por un usuario. El camino más óptimo será entregado al conductor de la camioneta en una estructura dinámica que permita obtener cuál es el siguiente colegio por el que debe pasar*
 
+*Grafo: https://i.imgur.com/cFtJb8O.png?1*
+
 # Ejercicio 2:
 ## Consigna:
 
