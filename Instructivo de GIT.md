@@ -3,17 +3,17 @@
 
 #### \*SIEMPRE leer la sección 6 antes de trabajar. :smile: :+1:
 
-| **Contenido**                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1. [**Primera vez clonando archivos desde github**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#primer-clon) |
-| 2. [**Cambiar/crear/borrar branch (Rama)**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#cambios-de-branch)   |
-| 3. [**Trabajar en los archivos**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#archivos)                      |
-| 4. [**Actualizar el repositorio**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#commits)                      |
-| 5. [**Código a integrar**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#merge)                                |
-| 6. [**Recordatorio**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#importante)                                |
-| 7. [**Problemas comunes y cómo resolverlos**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#problemas)         |
-| 8. [**TL;DR**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#resumen)                                          |
-| 9. [**Fotos y ejemplos**](https://github.com/Maxi-F/TP_integrador/blob/master/Instructivo de GIT.md#fotos-y-ejemplos)                      |
+| **Contenido**                                                     |
+| ----------------------------------------------------------------- |
+| 1. [**Primera vez clonando archivos desde github**](#primer-clon) |
+| 2. [**Cambiar/crear/borrar branch (Rama)**](#cambios-de-branch)   |
+| 3. [**Trabajar en los archivos**](#archivos)                      |
+| 4. [**Actualizar el repositorio**](#commits)                      |
+| 5. [**Código a integrar**](#merge)                                |
+| 6. [**Recordatorio**](#importante)                                |
+| 7. [**Problemas comunes y cómo resolverlos**](#problemas)         |
+| 8. [**TL;DR**](#resumen)                                          |
+| 9. [**Fotos y ejemplos**](#fotos-y-ejemplos)                      |
 
 
 ## **Requisito previo**: haber descargado e instalado GIT bash
