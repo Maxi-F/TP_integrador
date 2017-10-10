@@ -47,7 +47,7 @@ Git bash puede descargarse desde [**acá**](https://git-scm.com/downloads).
 #### \*SIEMPRE revisar que los cambios se dieron en los archivos. :+1:
 
 1. Una vez que se esté en la carpeta **TP_Integrador**, darle **click derecho** y clikear la opción **git bash here**.
-#### \*SIEMPRE arrancar tirando el comando `git branch` para ver las *branch* disponibles y la actual. :+1:
+   #### \*SIEMPRE arrancar tirando el comando `git branch` para ver las *branch* disponibles y la actual. :+1:
 
 2. Elegir entre:
   - Crear una nueva _branch_.
@@ -58,21 +58,21 @@ Git bash puede descargarse desde [**acá**](https://git-scm.com/downloads).
 
   #### Crear una nueva _branch_:
 
-  **\* Nota:** Cuando se crea una nueva _branch_, los archivos que van a figurar allí serán los mismos y estarán en el mismo estado que los de la _branch_ donde se estaba cuando se creó la nueva :exclamation:
-
   El comando a utilizar en este caso es `git checkout -b <nombre>`.
 
   Si se desea utilizar una _branch_ de github, hay que fijarse que coincida el nombre con la _branch_ de github.
 
   Una vez creada la _branch_, git va a pararse automáticamente al nueva _branch_.
 
-  #### Cambiar de _branch_ actual:
+  **\* Nota:** Cuando se crea una nueva _branch_, los archivos que van a figurar allí serán los mismos y estarán en el mismo estado que los de la _branch_ donde se estaba cuando se creó la nueva :exclamation:
 
-  **\*Nota:** Cuando se crea cambia de _branch_, los archivos deberían de modificarse automáticamente. En caso de que no ocurra, ver la **sección de problemas comunes** :exclamation:
+  #### Cambiar de _branch_ actual:
 
   Utilizar el comando `git branch` para saber en que _branch_ se encuentra el repositorio actualmente.
 
   En caso de no estar en la _branch_ deseada, utilizar el comando `git checkout <nombre>` para pasar a tener esa _branch_.
+
+  **\*Nota:** Cuando se crea cambia de _branch_, los archivos deberían de modificarse automáticamente. En caso de que no ocurra, ver la **sección de problemas comunes** :exclamation:
 
   #### Borrar _branch_:
 
@@ -93,20 +93,14 @@ Una vez modificado cualquier archivo git considerará que la _branch_ tiene modi
 
 Puede utilizarse el comando `git status` para ver aquellos archivos que han sido modificados (en caso de haber modificado el main y haberlo compilado y corrido, deberían de haber al menos 3 archivos modificados).
 
-** \*A veces es posible que no se permita cambiar de _branch_ cuando ser realizaron ciertas modificaciones.**
+**\*A veces es posible que no se permita cambiar de _branch_ cuando ser realizaron ciertas modificaciones.**
 
 ---
 
 
 ## Commits:
 
- **\*Nota** `<archivo>` refiere al nombre del archivo (exactamente igual a como aparece cuando se corre `git status`) :exclamation:
-
-**\*Nota 2** `<mensaje>` refiere al mensaje que figurará una vez que se suba el archivo como _commit_ :exclamation:
-
-**\*Nota 3** `<nombre>` refiere al nombre de la _branch_ en la que va a hacerse el commit. Este se conoce al utilizar el comando `git status` :exclamation:
-
-Para actulizar los archivos modificados en github (y/o en su repositorio local), deben seguirse los siguientes pasos:
+Para actualizar los archivos modificados en github (y/o en su repositorio local), deben seguirse los siguientes pasos:
 
 1. Utilizar el comando `git status` para ver qué archivos han sido modificados así como el nombre de la _branch_ actual.
 
@@ -117,14 +111,21 @@ Estos archivos serán agregados al _staging_ (o _actualización_ del repositorio
 
 4. Para hacer que el _commit_ ocurra en github, es necesario utilizar el comando `git push origin <nombre>.`
 
+ **\*Nota** `<archivo>` refiere al nombre del archivo (exactamente igual a como aparece cuando se corre `git status`) :exclamation:
+
+**\*Nota 2** `<mensaje>` refiere al mensaje que figurará una vez que se suba el archivo como _commit_ :exclamation:
+
+**\*Nota 3** `<nombre>` refiere al nombre de la _branch_ en la que va a hacerse el commit. Este se conoce al utilizar el comando `git status` :exclamation:
+
 ---
 
 
 ## Merge:
 ### \*SIEMPRE revisar que **base** y **compare** sean las _branches_ correspondientes.
-**\*Nota** _Merge_ sirve para combinar dos _branches_ en una única _branch_.
 
 Una vez se considere que los archivos en una _branch_ en **github** ya están listos para ser integrados a la **_branch_ principal** del ejercicio, se debe ir al repositorio en **github** y (en la sección _branches_ en el _branch_ que se desea integrar) se clickea el botón _New pull request_.
+
+**\*Nota** _Merge_ sirve para combinar dos _branches_ en una única _branch_.
 
 #### Detalles del _Pull Request_:
 
@@ -166,51 +167,53 @@ Una vez aprobado, el botón de _Merge_ estará disponible y al presionarlo se co
 ## Problemas:
 | **Lista de problemas comunes**                                                                       |
 | ---------------------------------------------------------------------------------------------------- |
-| 1. [**Cambiar de _branch_ no modifica los arhivos**](#cambios-de-branch-sin-modificación-del-código) |
-| 2. [**No me permite cambiar de _branch_**](#no-permite-el-cambio-de-branch)                          |
-| 3. [**Volver para atrás al último _commit_ de la _branch_**](#deshacer-cambios)                      |
+| 1. [**Cambiar de _branch_ no modifica los archivos**](#1-cambios-de-branch-sin-modificación-del-código) |
+| 2. [**No me permite cambiar de _branch_**](#2-no-permite-el-cambio-de-branch)                          |
+| 3. [**Volver para atrás al último _commit_ de la _branch_**](#3-deshacer-cambios)                      |
 
 #### 1. Cambios de _branch_ sin modificación del código:
-- _Mi código no se actualiza/modifica cuando cambio de branch!_
 
-  #### Las posibles causas son las siguientes:
-  1. Un programa tiene abierto el archivo que está siendo editado y no tiene soporte de git. Esto está generando problemas ante un cambio de _branch_.
-  2. Previamente tener abierto el archivo sin guardar en un programa que no soporte git y pese a que los archivos se modifican, esto no se verá hasta que se vuelvan a abrir (**Y en ese caso guardar probablemente sobreescriba los archivos**).
+  - _Mi código no se actualiza/modifica cuando cambio de branch!_
 
-  #### Las posibles soluciones:
-  - Una vez cerrados los programas que ocasionan conflicto, volver a cambiar de _branch_ (cambiar a otra y volver a la deseada).
-  - Intentar nuevamente todo el proceso previo a abrir los programas.
+    #### Las posibles causas son las siguientes:
+    1. Un programa tiene abierto el archivo que está siendo editado y no tiene soporte de git. Esto está generando problemas ante un cambio de _branch_.
+    2. Previamente tener abierto el archivo sin guardar en un programa que no soporte git y pese a que los archivos se modifican, esto no se verá hasta que se vuelvan a abrir (**Y en ese caso guardar probablemente sobreescriba los archivos**).
+
+    #### Las posibles soluciones:
+    - Una vez cerrados los programas que ocasionan conflicto, volver a cambiar de _branch_ (cambiar a otra y volver a la deseada).
+    - Intentar nuevamente todo el proceso previo a abrir los programas.
 
 #### 2. No permite el cambio de _branch_:
-- _Me salta un error por consola al querer cambiar de branch!_
 
-  #### Las posibles causas son las siguientes:
-  1. Hay un conflicto de archivos que se han creado y que no se les ha hecho _commit_ o un archivo que debería de existir en la _branch_ a la que quiero.
-  2. La _branch_ a la que se desea cambiar no existe.
+  - _Me salta un error por consola al querer cambiar de branch!_
 
-  #### Las posibles soluciones:
-  1. En caso de ser un archivo trivial el quue sobra, eliminarlo. Caso contrario crear un archivo con el mismo nombre y extensión que el que fue eliminado (ocupando temporalmente el lugar, puede ser eliminado luego).
-  2. Crear la _branch_.
+    #### Las posibles causas son las siguientes:
+    1. Hay un conflicto de archivos que se han creado y que no se les ha hecho _commit_ o un archivo que debería de existir en la _branch_ a la que quiero.
+    2. La _branch_ a la que se desea cambiar no existe.
 
-#### 3.Deshacer cambios:
+    #### Las posibles soluciones:
+    1. En caso de ser un archivo trivial el quue sobra, eliminarlo. Caso contrario crear un archivo con el mismo nombre y extensión que el que fue eliminado (ocupando temporalmente el lugar, puede ser eliminado luego).
+    2. Crear la _branch_.
 
--_Quiero volver atrás todo a como estaba en el último commit_
+#### 3. Deshacer cambios:
 
-  #### Cómo hacerlo?
+  - _Quiero volver atrás todo a como estaba en el último commit_
 
-  Para regresar al último _commit_, utilizar el comando `git reset --hard`.
+    #### Cómo hacerlo?
 
-  #### Debería hacer esto?
+    Para regresar al último _commit_, utilizar el comando `git reset --hard`.
 
-  Preferentemente no. Hay otras alternativas más efectivas.
+    #### Debería hacer esto?
 
-  #### Posibles problemas a encontrar:
+    Preferentemente no. Hay otras alternativas más efectivas.
 
-  El comando no restaura al momento deseado (tiene que ver con la posición del HEAD en cuanto a los _commits_ en el repositorio).
+    #### Posibles problemas a encontrar:
 
-  #### Lo que este comando NO soluciona:
+    El comando no restaura al momento deseado (tiene que ver con la posición del HEAD en cuanto a los _commits_ en el repositorio).
 
-  Archivos que no estaban creados al momento del commit y fueron creados después (notesé creados y no modificados) no serán eliminados y podrían ocasionar conflictos.
+    #### Lo que este comando NO soluciona:
+
+    Archivos que no estaban creados al momento del commit y fueron creados después (notesé creados y no modificados) no serán eliminados y podrían ocasionar conflictos.
 
 ---
 
