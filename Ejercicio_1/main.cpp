@@ -6,6 +6,17 @@
 
 using namespace std;
 
+struct Nodo {
+  int id;
+  Nodo *sgt;
+  Nodo *ady;
+};
+
+struct Arista {
+  Nodo *dst;
+  Arista *sgt;
+};
+
 float aleatorio() {
     return rand()%Rango;
 }
@@ -20,6 +31,7 @@ float velocidadPromedio() {
 }
 
 int main() {
-    //Para obtener la velocidad promedio velocidadPromedio();
-    return 0;
+
+  cout << velocidadPromedio() << endl;//Para obtener la velocidad promedio
+  return 0;
 }
