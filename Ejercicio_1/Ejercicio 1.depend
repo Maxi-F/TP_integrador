@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1446667744 source:d:\codeblocks\tp_integrador_2\ejercicio_1\main.cpp
-	<iostream>
-
-1507853352 source:c:\users\roy - work\desktop\tp-algoritmos\tp_integrador\ejercicio_1\main.cpp
-	<iostream>
-	<ctime>
-	<stdlib.h>
-
