@@ -1,11 +1,11 @@
-Se requiere un programa el cual tenga la capacidad de cargar los datos al centro de computos. Los mismos son enviados desde diversas escuelas a traves de telegramas.
+Se requiere un programa el cual tenga la capacidad de cargar los datos obtenidos al Centro de Cómputos. Los mismos son enviados desde diversas escuelas de Capital Federal a traves de telegramas.
 Aquellos se encuentran precargados en archivos binarios, los cuales pasarán a ser procesados en un nuevo archivo llamado "procesados.bin".
-También, el centro de computos posee un archivo nombrado "candidatos.bin", el cual contiene a los candidatos de cada zona.
+También, el Centro de Cómputos posee un archivo nombrado "candidatos.bin", el cual contiene a los candidatos de cada zona.
 
 Los telegramas contienen:
 - Nombre de candidato
 - Agrupacion politica
-- Zona
+- Comuna
 - Cantidad de votos
 
 El archivo de candidatos y el de procesados tienen la misma forma, solo que la cantidad de votos es TOTAL. ??????¿?????¿?¿
