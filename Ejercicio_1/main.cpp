@@ -20,15 +20,22 @@ char aChar(int conv) {
   return conv;
 }
 
-void asignarRel(Nodo grafo[]) {
-
+void asignarRel(Nodo grafo[], int i, int j) {
+  int k = 0;
+  while(grafo[i].relacionados[k] != Vacio) {
+    k++;
+  }
+  grafo[i].relacionados[k] = j;
+  k = 0;
+  while(grafo[j].relacionados[k] != Vacio) {
+    k++;
+  }
+  grafo[j].relacionados[k] = i;
+  return;
 }
 
-
-
 void defAristas(Nodo grafo[]) {
-  int j, k, aux;
-  int valor;
+  int j, k, aux, peso;
 
   for(int i = 0; i < Tam; i++) {
 
@@ -37,16 +44,16 @@ void defAristas(Nodo grafo[]) {
     while(grafo[i].relacionados[j] != Vacio && j < Rel) {
       if(!grafo[i].aristas[j]) {
         aux = grafo[i].relacionados[j];
-        cout << "Por favor ingrese el valor de la arista que comunica el Nodo " << grafo[i].nombre << endl;
+        cout << "Por favor ingrese el peso de la arista que comunica el Nodo " << grafo[i].nombre << endl;
         cout << "con el Nodo " << grafo[aux].nombre << endl;
-        cin >> valor;
-        grafo[i].aristas[j] = valor;
+        cin >> peso;
+        grafo[i].aristas[j] = peso;
 
         while(grafo[aux].relacionados[k] != i) {
           k++;
         }
 
-        grafo[aux].aristas[k] = valor;
+        grafo[aux].aristas[k] = peso;
       }
 
       j++;
@@ -56,20 +63,17 @@ void defAristas(Nodo grafo[]) {
 }
 
 void crearGrafo(Nodo grafo[]) {
-  int j;
   for(int i = 0; i < Tam; i++) {
     grafo[i].nombre[1] = aChar(i);
-    j = 0;
-    while(!grafo[i].relacionados[j] && j < Rel) {
+
+    for(int j = 0; j < Rel; j++) {
       grafo[i].relacionados[j] = Vacio;
-      j++;
     }
 
   }
 
-  grafo[0].relacionados[0] = 1; //Equivalente a decir relacionado con el nodo 1
-  grafo[1].relacionados[0] = 0; //Equivalente a decir relacionado con el nodo 0
-
+  asignarRel(grafo, 0, 1);//Asigna la relacion entre C0 y C1
+  asignarRel(grafo, 0, 2);
 
   return;
 }
