@@ -56,7 +56,6 @@ void defAristas(Nodo grafo[]) {
         while(grafo[aux].relacionados[k] != i) {
           k++;
         }
-        //Bug is here
 
         grafo[aux].aristas[k] = peso;
       }
