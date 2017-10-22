@@ -36,22 +36,27 @@ void asignarRel(Nodo grafo[], int i, int j) {
 
 void defAristas(Nodo grafo[]) {
   int j, k, aux, peso;
+  k = 0;
 
   for(int i = 0; i < Tam; i++) {
 
-    j = k = 0;
+    j = 0;
 
     while(grafo[i].relacionados[j] != Vacio && j < Rel) {
+
+      k = 0;
+
       if(!grafo[i].aristas[j]) {
         aux = grafo[i].relacionados[j];
-        cout << "Por favor ingrese el peso de la arista que comunica el Nodo " << grafo[i].nombre << endl;
-        cout << "con el Nodo " << grafo[aux].nombre << endl;
+        cout << "Por favor ingrese el peso de la arista que comunica el Nodo " << grafo[i].nombre << " con el Nodo " << grafo[aux].nombre << endl;
         cin >> peso;
         grafo[i].aristas[j] = peso;
+
 
         while(grafo[aux].relacionados[k] != i) {
           k++;
         }
+        //Bug is here
 
         grafo[aux].aristas[k] = peso;
       }
@@ -73,7 +78,20 @@ void crearGrafo(Nodo grafo[]) {
   }
 
   asignarRel(grafo, 0, 1);//Asigna la relacion entre C0 y C1
-  asignarRel(grafo, 0, 2);
+  asignarRel(grafo, 0, 2);//Asigna la relacion entre C0 y C2
+  asignarRel(grafo, 1, 2);//Asigna la relacion entre C1 y C2
+  asignarRel(grafo, 1, 3);//Asigna la relacion entre C1 y C3
+  asignarRel(grafo, 2, 3);//Asigna la relacion entre C2 y C3
+  asignarRel(grafo, 2, 4);//Asigna la relacion entre C2 y C4
+  asignarRel(grafo, 3, 4);//Asigna la relacion entre C3 y C4
+  asignarRel(grafo, 3, 5);//Asigna la relacion entre C3 y C5
+  asignarRel(grafo, 4, 5);//Asigna la relacion entre C4 y C5
+  asignarRel(grafo, 5, 6);//Asigna la relacion entre C5 y C6
+  asignarRel(grafo, 5, 7);//Asigna la relacion entre C5 y C7
+  asignarRel(grafo, 6, 7);//Asigna la relacion entre C6 y C7
+  asignarRel(grafo, 6, 8);//Asigna la relacion entre C6 y C8
+  asignarRel(grafo, 7, 8);//Asigna la relacion entre C7 y C8
+
 
   return;
 }
