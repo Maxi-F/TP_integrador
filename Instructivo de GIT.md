@@ -80,7 +80,7 @@ Git bash puede descargarse desde [**acá**](https://git-scm.com/downloads).
 
   Una vez que se encuentra en otro _branch_, utilizar el comando `git branch -D <nombre>`. Esto borrará el _branch_ especificado.
 
-  ### Traer archivos desde **github** a la _branch_:
+  ### Traer archivos desde **github** al _branch_:
 
   Se debe de estar en un _branch_ del mismo nombre del que queremos traer los archivos. Una vez allí utilizar el comando `git pull origin <nombre>` para traer los archivos de github al _branch_.
 
