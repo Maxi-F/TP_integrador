@@ -11,9 +11,24 @@ using namespace std;
 
 struct Nodo {
   char nombre[3] {'C'};
-  int aristas[Rel]{};
+  float aristas[Rel]{};
   int relacionados[Rel]{};
 };
+
+float aleatorio() {
+  return rand()%Rango;
+}
+
+float calcDemora() {
+  srand(time(0));
+
+  float v, demora;
+  demora = aleatorio()/Rango;
+  cout << endl << "Ingrese la velocidad promedio del m\242vil teniendo en cuenta que la demora har\240 que vaya al " << demora*100 << " \%\ de su velocidad: " << endl;
+  cin >> v;
+
+  return v * demora;
+}
 
 char aChar(int conv) {
   conv += 48;
@@ -25,12 +40,16 @@ void asignarRel(Nodo grafo[], int i, int j) {
   while(grafo[i].relacionados[k] != Vacio) {
     k++;
   }
+
   grafo[i].relacionados[k] = j;
   k = 0;
+
   while(grafo[j].relacionados[k] != Vacio) {
     k++;
   }
+
   grafo[j].relacionados[k] = i;
+
   return;
 }
 
@@ -47,17 +66,18 @@ void defAristas(Nodo grafo[]) {
       k = 0;
 
       if(!grafo[i].aristas[j]) {
+        float velocidad = calcDemora();
         aux = grafo[i].relacionados[j];
-        cout << "Por favor ingrese el peso de la arista que comunica el Nodo " << grafo[i].nombre << " con el Nodo " << grafo[aux].nombre << endl;
+        cout << endl << "Por favor ingrese la distancia de la escuela " << grafo[i].nombre << " con la escuela " << grafo[aux].nombre << endl;
         cin >> peso;
-        grafo[i].aristas[j] = peso;
+        grafo[i].aristas[j] = peso + velocidad;
 
 
         while(grafo[aux].relacionados[k] != i) {
           k++;
         }
 
-        grafo[aux].aristas[k] = peso;
+        grafo[aux].aristas[k] = peso + velocidad;
       }
 
       j++;
@@ -95,24 +115,12 @@ void crearGrafo(Nodo grafo[]) {
   return;
 }
 
-float aleatorio() {
-  return rand()%Rango;
-}
-
-float velocidadPromedio() {
-  float v;
-  cout << "Ingrese la velocidad promedio del m\242vil." << endl;
-  cin >> v;
-  srand(time(0));
-
-  return v * aleatorio()/Rango;
-}
 
 int main() {
   Nodo grafo[Tam];
   crearGrafo(grafo);
   defAristas(grafo);
 
-  cout << velocidadPromedio() << endl;//Para obtener la velocidad promedio
+  cout << calcDemora() << endl;//Para obtener la velocidad promedio
   return 0;
 }
