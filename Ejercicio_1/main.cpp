@@ -35,6 +35,28 @@ char aChar(int conv) {
   return conv;
 }
 
+void caminoOptimo(Nodo grafo[]) {
+  int camino1[6], camino2[4];
+  float caminosA[4], caminosB[2];
+
+  for(int i = 0; i < 4; i++) {
+    caminosA[i] = 0;
+    if(i < 2) {
+      caminosB[i] = 0;
+    }
+  }
+
+  caminosA[0] = grafo[0].aristas[1] + grafo[2].aristas[1] + grafo[1].aristas[2] + grafo[3].aristas[2] + grafo[4].aristas[2];
+  caminosA[1] = grafo[0].aristas[0] + grafo[1].aristas[1] + grafo[2].aristas[2] + grafo[3].aristas[2] + grafo[4].aristas[2];
+  caminosA[2] = grafo[0].aristas[0] + grafo[1].aristas[1] + grafo[2].aristas[3] + grafo[4].aristas[1] + grafo[3].aristas[3];
+  caminosA[3] = grafo[0].aristas[0] + grafo[1].aristas[2] + grafo[3].aristas[1] + grafo[2].aristas[3] + grafo[4].aristas[2];
+
+  caminosB[0] = grafo[5].aristas[2] + grafo[6].aristas[2] + grafo[7].aristas[2];
+  caminosB[1] = grafo[5].aristas[3] + grafo[7].aristas[1] + grafo[6].aristas[0];
+
+  return;
+}
+
 void asignarRel(Nodo grafo[], int i, int j) {
   int k = 0;
   while(grafo[i].relacionados[k] != Vacio) {
@@ -105,7 +127,7 @@ void crearGrafo(Nodo grafo[]) {
   asignarRel(grafo, 3, 4);//Asigna la relacion entre C3 y C4
   asignarRel(grafo, 3, 5);//Asigna la relacion entre C3 y C5
   asignarRel(grafo, 4, 5);//Asigna la relacion entre C4 y C5
-  asignarRel(grafo, 5, 6);//Asigna la relacion entre C5 y C6
+  asignarRel(grafo, 5, 6);//Asig na la relacion entre C5 y C6
   asignarRel(grafo, 5, 7);//Asigna la relacion entre C5 y C7
   asignarRel(grafo, 6, 7);//Asigna la relacion entre C6 y C7
   asignarRel(grafo, 6, 8);//Asigna la relacion entre C6 y C8
@@ -120,6 +142,7 @@ int main() {
   Nodo grafo[Tam];
   crearGrafo(grafo);
   defAristas(grafo);
+  caminoOptimo(grafo);
 
   cout << calcDemora() << endl;//Para obtener la velocidad promedio
   return 0;
