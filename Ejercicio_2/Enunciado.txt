@@ -18,4 +18,3 @@ El programa deberá ser capaz de:
 1. Levantar el usuario "Candidatos.bin"
 3. Buscar un candidato.
 4. Listar a los candidatos por total de votos.
-5. Finalizar jornada (estamos pensando en hacer algo parecido)
