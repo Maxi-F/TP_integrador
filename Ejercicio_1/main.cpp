@@ -45,6 +45,7 @@ int caminoMasCorto(float caminos[]) {
 void caminoOptimo(Nodo grafo[]) {
   int camino1[6], camino2[4];
   float caminosA[4], caminosB[2];
+  string flecha = "\n|\nV";
 
   for(int i = 0; i < 4; i++) {
     caminosA[i] = 0;
@@ -62,24 +63,24 @@ void caminoOptimo(Nodo grafo[]) {
   caminosB[1] = grafo[5].aristas[3] + grafo[7].aristas[1] + grafo[6].aristas[0];
 
   switch(caminoMasCorto(caminosA)) {
-    case 0: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << endl << grafo[2].nombre << endl
-    << grafo[1].nombre << endl << grafo[3].nombre << endl << grafo[4].nombre << endl;
+    case 0: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << flecha << endl << grafo[2].nombre << flecha << endl
+    << grafo[1].nombre << flecha << endl << grafo[3].nombre << flecha << endl << grafo[4].nombre << flecha << endl;
       break;
-    case 1: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << endl << grafo[1].nombre << endl
-    << grafo[2].nombre << endl << grafo[3].nombre << endl << grafo[4].nombre << endl;
+    case 1: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << flecha << endl << grafo[1].nombre << flecha << endl
+    << grafo[2].nombre << flecha << endl << grafo[3].nombre << flecha << endl << grafo[4].nombre << flecha << endl;
       break;
-    case 2: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << endl << grafo[1].nombre << endl
-    << grafo[2].nombre << endl << grafo[4].nombre << endl << grafo[3].nombre << endl;
+    case 2: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << flecha << endl << grafo[1].nombre << flecha << endl
+    << grafo[2].nombre << flecha << endl << grafo[4].nombre << flecha << endl << grafo[3].nombre << flecha << endl;
       break;
-    case 3: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << endl << grafo[1].nombre << endl
-    << grafo[3].nombre << endl << grafo[2].nombre << endl << grafo[4].nombre << endl;
+    case 3: cout << endl << "El camino mas corto pasa por: \n" << endl << grafo[0].nombre << flecha << endl << grafo[1].nombre << flecha << endl
+    << grafo[3].nombre << flecha << endl << grafo[2].nombre << flecha << endl << grafo[4].nombre << flecha << endl;
       break;
   }
 
   if(caminosB[1]<caminosB[0]) {
-    cout << grafo[5].nombre << endl << grafo[7].nombre << endl << grafo[6].nombre << endl;
+    cout << grafo[5].nombre << flecha << endl << grafo[7].nombre << flecha << endl << grafo[6].nombre << flecha << endl;
   } else {
-    cout << grafo[5].nombre << endl << grafo[6].nombre << endl << grafo[7].nombre << endl;
+    cout << grafo[5].nombre << flecha << endl << grafo[6].nombre << flecha << endl << grafo[7].nombre << flecha << endl;
   }
 
   cout << grafo[8].nombre << endl;
