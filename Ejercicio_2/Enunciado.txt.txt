@@ -1,18 +1,20 @@
-Se necesita un programa en el cual se puedan cargar los datos que vienen de los telegramas de las distintas escuelas al centro de cómputos.
-Los telegramas vienen ya precargados en archivos .bin, los cuales pasarán a ser procesados en un nuevo archivo llamado "procesados.bin".
-También, desde el centro de computos tienen un archivo llamado "candidatos.bin", que contiene a los candidatos de cada zona.
+Se requiere un programa el cual tenga la capacidad de cargar los datos del archivo Mesas.bin en el Centro de CÃ³mputos. Dicho archivo contiene la informaciÃ³n de candidatos Ãºnicamente de Capital Federal, la cual se encuentra de esta forma:
 
-Los telegramas (ya precargados) tienen cargados:
-- Candidato
-- Agrupacion Politica
-- Zona
+  Mesas:
+- NÃºmero de mesa
+- Nombre de escuela
+- Comuna
+  
+  Candidatos:
+- Nombre de candidato
+- Agrupacion politica
+- Comuna
 - Cantidad de votos
 
-El archivo de candidatos y el de procesados tienen la misma forma, solo que la cantidad de votos es TOTAL.
+Aquellos se encuentran precargados en archivos binarios.
 
-El programa deberá ser capaz de:
+El programa deberÃ¡ ser capaz de:
 
-1. levantar el usuario "Candidatos.bin"
-2. Buscar un candidato.
-3. Listar a los candidatos por total de votos.
-4. Procesar telegramas.
+1. Levantar el usuario "Candidatos.bin"
+3. Buscar un candidato.
+4. Listar a los candidatos por total de votos.
