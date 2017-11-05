@@ -92,6 +92,11 @@ void cargarMesasPrueba(void)
         m.comuna=30;
         fwrite(&m, sizeof(mesa),1,f);
 
+        m.nroMesa=316;
+        strcpy(m.nombreEscuela,"ABATE JOSE REY 2");
+        m.comuna=30;
+        fwrite(&m, sizeof(mesa),1,f);
+
         m.nroMesa=653;
         strcpy(m.nombreEscuela,"JOSE INGENIEROS");
         m.comuna=12;
@@ -252,7 +257,7 @@ nodoListaCandidatos* buscarAnteriorCandidatos (nodoListaCandidatos *c, nodoLista
 nodoListaCandidatos* buscarCandidatosPorNombreYApellido (nodoListaCandidatos *c,char nombreBuscado[50], char apellidoBuscado[50])
 {
     nodoListaCandidatos *p=c;
-    while (p && !(strcmp(p->info.nombreCandidato,nombreBuscado)) && !(strcmp(p->info.apellidoCandidato,apellidoBuscado)))
+    while (p && strcmp(p->info.nombreCandidato,nombreBuscado) && strcmp(p->info.apellidoCandidato,apellidoBuscado))
         p= p->sgte;
     return p;
 }
@@ -354,6 +359,17 @@ void listaCandidatosInsertarFinal (nodoListaMesa *&m, candidatos x)
     return;
 }
 
+void insertarCandidatos(nodoListaMesa *&m, candidatos x, int comuna)
+{
+  nodoListaMesa *aux = buscarMesaPorComuna(m,comuna);
+  nodoListaCandidatos *auxB = aux->info.listaDeCandidatos;
+  while(aux){
+    listaCandidatosInsertarFinal(aux, x);
+    aux = aux->sgte;
+    aux = buscarMesaPorComuna(aux, comuna);
+  }
+}
+
 void mostrarCandidatos (nodoListaCandidatos *c)
 {
         cout << endl << "               CANDIDATOS:" << endl;
@@ -390,14 +406,8 @@ void levantarArchivos (nodoListaMesa *&p)
     f=fopen("archivocandidatos.bin", "rb");
     fread(&c,sizeof(candidatos),1,f);
     while (!feof(f)){
-        nodoListaMesa *aux = buscarMesaPorComuna(p,c.comuna);
-
-        if (aux){
-            listaCandidatosInsertarSgte(aux->info.listaDeCandidatos, c);
-        }
-
-        fread(&c,sizeof(candidatos),1,f);
-
+      insertarCandidatos(p,c,c.comuna);
+      fread(&c,sizeof(candidatos),1,f);
     }
     fclose(f);
     return;
@@ -446,25 +456,32 @@ void insertarNuevaMesaMenu (nodoListaMesa *&m)
 {
     cout << "*************************  INSERTAR UNA NUEVA MESA  ************************" << endl << endl;
     mesa nuevaMesa;
+    nodoListaMesa *aux;
+    bool encontrado = false;
     cout << "   INGRESE LOS DATOS CORRESPONDIENTES A LA NUEVA MESA:" << endl << endl;
     cout << "        NRO. DE COMUNA: ";
     cin >> nuevaMesa.comuna;
-    if (buscarMesaPorComuna(m,nuevaMesa.comuna))
-        cout << endl <<"            ERROR: YA EXISTE UNA MESA CON EL NRO. DE COMUNA ";
-    else{
-        cout << "        NRO. DE MESA: ";
-        cin >> nuevaMesa.nroMesa;
-            if (buscarMesaPorNro(m,nuevaMesa.nroMesa))
-                cout << endl << "          ERROR: YA EXISTE UNA MESA CON EL NRO. DE MESA " << nuevaMesa.nroMesa << endl;
-            else{
-                cout << "        NOMBRE DE ESCUELA CORRESPONDIENTE: ";
-                cin >> nuevaMesa.nombreEscuela;
-                listaMesaInsertarFinal(m,nuevaMesa);
-                system("cls");
-                cout << "*************************  INSERTAR UNA NUEVA MESA  ************************" << endl << endl;
-                cout << "                   SE HA CARGADO LA MESA NRO. " << nuevaMesa.comuna << " CORRECTAMENTE." << endl;
-            }
+    cout << "        NRO. DE MESA: ";
+    cin >> nuevaMesa.nroMesa;
+    aux = buscarMesaPorNro(m,nuevaMesa.nroMesa);
+    while(aux && !encontrado){
+        if(aux->info.nroMesa == nuevaMesa.nroMesa && aux->info.comuna == nuevaMesa.comuna){
+          encontrado = true;
         }
+        else{
+          aux = aux->sgte;
+        }
+    }
+    if (aux)
+        cout << endl <<"            ERROR: YA EXISTE UNA MESA CON EL NUMERO " << nuevaMesa.nroMesa <<" EN LA COMUNA " << nuevaMesa.comuna << endl;
+    else{
+        cout << "        NOMBRE DE ESCUELA CORRESPONDIENTE: ";
+        cin >> nuevaMesa.nombreEscuela;
+        listaMesaInsertarFinal(m,nuevaMesa);
+        system("cls");
+        cout << "*************************  INSERTAR UNA NUEVA MESA  ************************" << endl << endl;
+        cout << "                   SE HA CARGADO LA MESA NRO. " << nuevaMesa.comuna << " CORRECTAMENTE." << endl;
+    }
     return;
 }
 
@@ -476,7 +493,7 @@ void insertarNuevoCandidatoMenu (nodoListaMesa *&m, nodoListaCandidatos *&c)
     cout << "INGRESE NRO. DE COMUNA DE LA MESA CORRESPONDIENTE: ";
     cin >> comunaDeseada;
     p=buscarMesaPorComuna(m,comunaDeseada);
-    if (p){
+    if(p){
         candidatos nuevoCandidato;
         cout << endl << "       INGRESE NOMBRE DEL CANDIDATO: ";
         cin >> nuevoCandidato.nombreCandidato;
@@ -489,7 +506,7 @@ void insertarNuevoCandidatoMenu (nodoListaMesa *&m, nodoListaCandidatos *&c)
         cin >> nuevoCandidato.agrupacionPolitica;
         cout << "       INGRESE CANTIDAD DE VOTOS: ";
         cin >> nuevoCandidato.votos;
-        listaCandidatosInsertarFinal(p,nuevoCandidato);
+        insertarCandidatos(m,nuevoCandidato, comunaDeseada);
         system("cls");
         cout << "**********************  INSERTAR UNA NUEVA CANDITATO    *********************" << endl << endl;
         cout << "                   SE HA CARGADO EL CANDIDATO " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " CORRECTAMENTE." << endl;
@@ -538,16 +555,25 @@ void mostrarMesasYCandidatosMenu (nodoListaMesa *m)
 
 void ordenarCandidatosMenu (nodoListaMesa *m)
 {
-    int comunaDeseada;
+    int mesaDeseada;
     cout << "***********************  ORDENAR CANDIDATOS POR VOTOS  ************************" << endl << endl;
-    cout << endl << "INGRESE EL NRO. DE COMUNA DE LA MESA QUE DESEA ORDENAR LOS CANDIDATOS: ";
-    cin >> comunaDeseada;
-    m=buscarMesaPorComuna(m,comunaDeseada);
-    ordenamientoCandidatos(m->info.listaDeCandidatos);
-    cout << endl << "                         SE HA ORDENADO CORRECTAMENTE.";
-    cout << endl << "                    _________________________________________" << endl;
-
-    mostrarMesasYCandidatosMenu(m);
+    cout << endl << "INGRESE EL NRO. DE LA MESA QUE DESEA ORDENAR LOS CANDIDATOS: ";
+    cin >> mesaDeseada;
+    m=buscarMesaPorNro(m,mesaDeseada);
+    if(m && m->info.listaDeCandidatos){
+      ordenamientoCandidatos(m->info.listaDeCandidatos);
+      cout << endl << "                         SE HA ORDENADO CORRECTAMENTE.";
+      cout << endl << "                    _________________________________________" << endl;
+      mostrarCandidatos(m->info.listaDeCandidatos);
+    }
+    else{
+      if(!m){
+        cout << "       ERROR: NO FUE INGRESADA LA MESA " << mesaDeseada << " AL PROGRAMA. " << endl;
+      }
+      else{
+        cout << "       ERROR: NO SE HAN INGRESADO CANDIDATOS EN LA MESA " << mesaDeseada << endl;
+      }
+    }
     return;
 }
 
@@ -586,8 +612,8 @@ int main()
 {
     nodoListaMesa *m=NULL;
     nodoListaCandidatos *c=NULL;
-    cargarCandidatosPrueba();
-    cargarMesasPrueba();
+    //cargarCandidatosPrueba();
+    //cargarMesasPrueba();
     levantarArchivos(m);
     char elegida;
 

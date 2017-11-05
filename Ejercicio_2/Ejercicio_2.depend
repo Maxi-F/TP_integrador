@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1509906785 source:d:\codeblocks\tp_integrador_2\ejercicio_2\main.cpp
+	<iostream>
+	<stdio.h>
+	<conio.h>
+	<cstring>
+	<stdlib.h>
+
