@@ -31,6 +31,8 @@ struct nodoListaMesa {
   nodoListaMesa *sgte;
 };
 
+/*
+//PARA MODIFICAR LOS ARCHIVOS DE PRUEBA
 void cargarCandidatosPrueba(void) {
   FILE *f;
   f = fopen("archivocandidatos.bin","wb");
@@ -45,7 +47,7 @@ void cargarCandidatosPrueba(void) {
 
     strcpy(c.nombreCandidato,"NESTOR");
     strcpy(c.apellidoCandidato,"KICHNER");
-    strcpy(c.agrupacionPolitica,"FRENTE PARA LA VICTORIA");
+    strcpy(c.agrupacionPolitica,"FRENTE_PARA_LA_VICTORIA");
     c.votos=95;
     c.mesa=212;
     fwrite(&c, sizeof(candidatos),1,f);
@@ -58,8 +60,8 @@ void cargarCandidatosPrueba(void) {
     fwrite(&c, sizeof(candidatos),1,f);
 
     strcpy(c.nombreCandidato,"CRISTINA");
-    strcpy(c.apellidoCandidato,"FERNANDEZ DE KICHNER");
-    strcpy(c.agrupacionPolitica,"UNION CIUDADANA");
+    strcpy(c.apellidoCandidato,"FERNANDEZ_DE_KICHNER");
+    strcpy(c.agrupacionPolitica,"UNION_CIUDADANA");
     c.votos=655;
     c.mesa=316;
     fwrite(&c, sizeof(candidatos),1,f);
@@ -77,22 +79,22 @@ void cargarMesasPrueba(void) {
   mesa m;
   if(f) {
     m.nroMesa=212;
-    strcpy(m.nombreEscuela,"NUESTRA SRA. DE LA MERCED");
+    strcpy(m.nombreEscuela,"NUESTRA_SRA._DE_LA_MERCED");
     m.comuna=25;
     fwrite(&m, sizeof(mesa),1,f);
 
     m.nroMesa=315;
-    strcpy(m.nombreEscuela,"ABATE JOSE REY");
+    strcpy(m.nombreEscuela,"ABATE_JOSE_REY");
     m.comuna=30;
     fwrite(&m, sizeof(mesa),1,f);
 
     m.nroMesa=316;
-    strcpy(m.nombreEscuela,"ABATE JOSE REY 2");
+    strcpy(m.nombreEscuela,"SHOLEM_ALEJEIM");
     m.comuna=30;
     fwrite(&m, sizeof(mesa),1,f);
 
     m.nroMesa=653;
-    strcpy(m.nombreEscuela,"JOSE INGENIEROS");
+    strcpy(m.nombreEscuela,"JOSE_INGENIEROS");
     m.comuna=12;
     fwrite(&m, sizeof(mesa),1,f);
 
@@ -101,7 +103,7 @@ void cargarMesasPrueba(void) {
     cout << "           ERROR: NO SE PUEDE CARGAR EL ARCHIVO" << endl;
   }
   return;
-}
+}*/
 
 nodoListaMesa* obtenerUltimoMesa (nodoListaMesa *m) {
   if(m) {
@@ -573,8 +575,8 @@ void guardarArchivoMenu(nodoListaMesa *m) {
 int main() {
   nodoListaMesa *m=NULL;
   nodoListaCandidatos *c=NULL;
-  //cargarCandidatosPrueba();
-  //cargarMesasPrueba();
+  //cargarCandidatosPrueba();SUBPROGRAMA DE PRUEBA
+  //cargarMesasPrueba();//SUBPROGRAMA DE PRUEBA
   levantarArchivos(m);
   char elegida;
 

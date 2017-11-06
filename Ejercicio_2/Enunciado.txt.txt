@@ -1,20 +1,38 @@
-Se requiere un programa el cual tenga la capacidad de cargar los datos del archivo Mesas.bin en el Centro de Cómputos. Dicho archivo contiene la información de candidatos únicamente de Capital Federal, la cual se encuentra de esta forma:
+﻿Se requiere un programa el cual tenga la capacidad de cargar los datos del archivo Mesas.bin en el Centro de Cómputos.
+Dicho archivo contiene la información de candidatos únicamente de Capital Federal, la cual se encuentra de esta forma:
 
-  Mesas:
-- Número de mesa
-- Nombre de escuela
-- Comuna
   
-  Candidatos:
+
+Mesas:
+
+- Número de mesa
+
+- Nombre de escuela
+
+- Comuna
+ 
+
+Candidatos:
+
 - Nombre de candidato
+
 - Agrupacion politica
+
 - Comuna
 - Cantidad de votos
 
+
+
 Aquellos se encuentran precargados en archivos binarios.
+
+
 
 El programa deberá ser capaz de:
 
-1. Levantar el usuario "Candidatos.bin"
+
+1. Levantar los archivos "Mesas.bin" y "Candidatos.bin".
+
+2. 
 3. Buscar un candidato.
+
 4. Listar a los candidatos por total de votos.
