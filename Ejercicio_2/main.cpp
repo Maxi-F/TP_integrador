@@ -10,7 +10,7 @@ struct candidatos {
   char nombreCandidato[50];
   char apellidoCandidato[50];
   char agrupacionPolitica[70];
-  int comuna;
+  int mesa;
   int votos;
 };
 
@@ -35,37 +35,33 @@ void cargarCandidatosPrueba(void) {
   FILE *f;
   f = fopen("archivocandidatos.bin","wb");
   candidatos c;
-<<<<<<< HEAD
-  if(f) {
-=======
   if (f) {
->>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
-    strcpy(c.nombreCandidato,"NICOLAS");
-    strcpy(c.apellidoCandidato,"DEL CA�O");
-    strcpy(c.agrupacionPolitica,"FRENTE DE IZQUIERDA");
+    strcpy(c.nombreCandidato,"SERGIO");
+    strcpy(c.apellidoCandidato,"MASSA");
+    strcpy(c.agrupacionPolitica,"1PAIS");
     c.votos=456;
-    c.comuna=30;
+    c.mesa=315;
     fwrite(&c, sizeof(candidatos),1,f);
 
     strcpy(c.nombreCandidato,"NESTOR");
     strcpy(c.apellidoCandidato,"KICHNER");
     strcpy(c.agrupacionPolitica,"FRENTE PARA LA VICTORIA");
     c.votos=95;
-    c.comuna=30;
+    c.mesa=212;
     fwrite(&c, sizeof(candidatos),1,f);
 
     strcpy(c.nombreCandidato,"MAURICIO");
     strcpy(c.apellidoCandidato,"MACRI");
     strcpy(c.agrupacionPolitica,"CAMBIEMOS");
     c.votos=98;
-    c.comuna=12;
+    c.mesa=316;
     fwrite(&c, sizeof(candidatos),1,f);
 
     strcpy(c.nombreCandidato,"CRISTINA");
     strcpy(c.apellidoCandidato,"FERNANDEZ DE KICHNER");
     strcpy(c.agrupacionPolitica,"UNION CIUDADANA");
     c.votos=655;
-    c.comuna=12;
+    c.mesa=316;
     fwrite(&c, sizeof(candidatos),1,f);
 
     fclose(f);
@@ -119,11 +115,7 @@ void listaMesaInsertarSgte (nodoListaMesa *&m, mesa x) {
   nodoListaMesa *nuevo = new nodoListaMesa();
   x.listaDeCandidatos = NULL;
   nuevo->info = x;
-<<<<<<< HEAD
-  if(m){
-=======
   if (m){
->>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
     nuevo->sgte = m->sgte;
     m->sgte = nuevo;
   } else {
@@ -336,16 +328,6 @@ void listaCandidatosInsertarFinal (nodoListaMesa *&m, candidatos x) {
   return;
 }
 
-void insertarCandidatos(nodoListaMesa *&m, candidatos x, int comuna) {
-  nodoListaMesa *aux = buscarMesaPorComuna(m,comuna);
-  nodoListaCandidatos *auxB = aux->info.listaDeCandidatos;
-  while(aux) {
-    listaCandidatosInsertarFinal(aux, x);
-    aux = aux->sgte;
-    aux = buscarMesaPorComuna(aux, comuna);
-  }
-}
-
 void mostrarCandidatos (nodoListaCandidatos *c) {
   cout << endl << "               CANDIDATOS:" << endl;
   if(c) {
@@ -378,7 +360,10 @@ void levantarArchivos (nodoListaMesa *&p) {
   f=fopen("archivocandidatos.bin", "rb");
   fread(&c,sizeof(candidatos),1,f);
   while (!feof(f)) {
-    insertarCandidatos(p,c,c.comuna);
+    nodoListaMesa *aux = buscarMesaPorNro(p,c.mesa);
+    if (aux) {
+      listaCandidatosInsertarSgte(aux->info.listaDeCandidatos, c);
+    }
     fread(&c,sizeof(candidatos),1,f);
   }
   fclose(f);
@@ -386,15 +371,9 @@ void levantarArchivos (nodoListaMesa *&p) {
 }
 
 char mostrarMenu() {
-<<<<<<< HEAD
-  cout << "*******************************  BIENVENIDO  *******************************" << endl << endl;
+  cout << "*******************************  BIENVENIDO/A  *******************************" << endl << endl;
   cout << "                           SELECCIONE UNA OPCION:" << endl;
   cout << endl << "            '0' PARA BUSCAR UNA MESA POR SU NRO. DE COMUNA CORRESPONDIENTE." << endl;
-=======
-  cout << endl << "*******************************  BIENVENIDO  *******************************" << endl << endl;
-  cout << "                           SELECCIONE UNA OPCION:" << endl;
-  cout << endl << "            '0' PARA BUSCAR UNA MESA POR SU NRO. CORRESPONDIENTE." << endl;
->>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
   cout << "            '1' PARA AGREGAR UNA NUEVA MESA." << endl;
   cout << "            '2' PARA AGREGAR UN NUEVO CANDIDATO." << endl; //ALMOST DONE
   cout << "            '3' PARA ORDENAR POR NUMERO DE MESA." << endl;
@@ -461,50 +440,47 @@ void insertarNuevaMesaMenu (nodoListaMesa *&m) {
 
 void insertarNuevoCandidatoMenu (nodoListaMesa *&m, nodoListaCandidatos *&c) {
   nodoListaMesa *p=NULL;
+  nodoListaMesa *k=NULL;
   int comunaDeseada;
-<<<<<<< HEAD
+  int mesaDeseada;
   cout << "**********************  INSERTAR UN/A NUEVO/A CANDIDATO/A    *********************" << endl << endl;
-=======
-  cout << "**********************  INSERTAR UNA NUEVA CANDITATO    *********************" << endl << endl;
->>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
   cout << "INGRESE NRO. DE COMUNA DE LA MESA CORRESPONDIENTE: ";
   cin >> comunaDeseada;
   p=buscarMesaPorComuna(m,comunaDeseada);
   if(p) {
-    candidatos nuevoCandidato;
-    cout << endl << "       INGRESE NOMBRE DEL CANDIDATO: ";
-    cin >> nuevoCandidato.nombreCandidato;
-    cout << "       INGRESE APELLIDO DEL CANDIDATO: ";
-    cin >> nuevoCandidato.apellidoCandidato;
-<<<<<<< HEAD
-    if(buscarCandidatosPorNombreYApellido(p->info.listaDeCandidatos, nuevoCandidato.nombreCandidato, nuevoCandidato.apellidoCandidato))
-=======
-    if(buscarCandidatosPorNombreYApellido(p->info.listaDeCandidatos,nuevoCandidato.nombreCandidato,nuevoCandidato.apellidoCandidato))
->>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
-      cout << endl <<"        ERROR: EL/LA CANDIDAT@ " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " YA SE ENCUENTRA INGRESADO." << endl;
+  cout << "INGRESE NRO. DE MESA CORRESPONDIENTE: ";
+  cin >> mesaDeseada;
+    k = buscarMesaPorNro(m,mesaDeseada);
+    while(k && k->info.comuna != comunaDeseada) {
+      k = k->sgte;
+      k = buscarMesaPorNro(k, mesaDeseada);
+    }
+    if(k) {
+      candidatos nuevoCandidato;
+      cout << endl << "       INGRESE NOMBRE DEL CANDIDATO: ";
+      cin >> nuevoCandidato.nombreCandidato;
+      cout << "       INGRESE APELLIDO DEL CANDIDATO: ";
+      cin >> nuevoCandidato.apellidoCandidato;
+      if(buscarCandidatosPorNombreYApellido(p->info.listaDeCandidatos, nuevoCandidato.nombreCandidato, nuevoCandidato.apellidoCandidato))
+        cout << endl <<"        ERROR: EL/LA CANDIDAT@ " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " YA SE ENCUENTRA INGRESADO." << endl;
+      else {
+        cout << "       INGRESE AGRUPACION POLITICA: ";
+        cin >> nuevoCandidato.agrupacionPolitica;
+        cout << "       INGRESE CANTIDAD DE VOTOS EN LA MESA: ";
+        cin >> nuevoCandidato.votos;
+        nuevoCandidato.mesa = mesaDeseada;
+        listaCandidatosInsertarFinal(k, nuevoCandidato);
+        system("cls");
+        cout << "**********************  INSERTAR UNA NUEVA  CANDIDATO    *********************" << endl << endl;
+        cout << "                   SE HA CARGADO EL CANDIDATO " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " CORRECTAMENTE." << endl;
+      }
+    }
     else {
-      cout << "       INGRESE AGRUPACION POLITICA: ";
-      cin >> nuevoCandidato.agrupacionPolitica;
-      cout << "       INGRESE CANTIDAD DE VOTOS: ";
-      cin >> nuevoCandidato.votos;
-<<<<<<< HEAD
-      insertarCandidatos(m, nuevoCandidato, comunaDeseada);
-      system("cls");
-      cout << "**********************  INSERTAR UNA NUEVA  CANDIDATO    *********************" << endl << endl;
-      cout << "                   SE HA CARGADO EL CANDIDATO " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " CORRECTAMENTE." << endl;
+      cout << "          ERROR: NRO. DE MESA NO CORRESPONDE CON EL NRO. DE COMUNA" << endl;
     }
   }
   else
     cout << "          ERROR: NRO. DE COMUNA INEXISTENTE." << endl;
-=======
-      insertarCandidatos(m,nuevoCandidato, comunaDeseada);
-      system("cls");
-      cout << "**********************  INSERTAR UNA NUEVA CANDITATO    *********************" << endl << endl;
-      cout << "                   SE HA CARGADO EL CANDIDATO " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " CORRECTAMENTE." << endl;
-    }
-  }
->>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
-
   return;
 }
 
@@ -568,8 +544,8 @@ void guardarArchivoMenu(nodoListaMesa *m) {
   FILE *archivoCandidatos;
   nodoListaMesa *auxMesa=NULL;
   nodoListaCandidatos *auxCand=NULL;
-  if(archivoMesas= fopen("archivomesas.bin","ab")) {
-    if(archivoCandidatos= fopen("archivocandidatos.bin","ab")) {
+  if(archivoMesas= fopen("archivomesas.bin","wb")) {
+    if(archivoCandidatos= fopen("archivocandidatos.bin","wb")) {
       auxMesa= m;
       while (auxMesa) {
         fwrite(&(auxMesa->info), sizeof(mesa),1,archivoMesas);
@@ -595,10 +571,6 @@ void guardarArchivoMenu(nodoListaMesa *m) {
 }
 
 int main() {
-<<<<<<< HEAD
-=======
-  setlocale(LC_ALL, "spanish");
->>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
   nodoListaMesa *m=NULL;
   nodoListaCandidatos *c=NULL;
   //cargarCandidatosPrueba();
@@ -634,12 +606,17 @@ int main() {
       system("cls");
       mostrarMesasYCandidatosMenu(m);
       break;
+    }
+
+    if(elegida != 27) {
       cout << endl << "****************************************************************************" << endl;
       cout << endl << "           PRESIONE UNA TECLA PARA CONTINUAR." << endl;
       getch();
     }
+
+    system("cls");
+
   } while (elegida!=27);
-  system("cls");
   guardarArchivoMenu(m);
   cout << endl << "       GRACIAS POR UTILIZAR NUESTRO PROGRAMA!" << endl;
 
