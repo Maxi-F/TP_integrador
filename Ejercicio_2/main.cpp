@@ -35,7 +35,7 @@ void cargarCandidatosPrueba(void) {
   FILE *f;
   f = fopen("archivocandidatos.bin","wb");
   candidatos c;
-  if (f) {
+  if(f) {
     strcpy(c.nombreCandidato,"NICOLAS");
     strcpy(c.apellidoCandidato,"DEL CA�O");
     strcpy(c.agrupacionPolitica,"FRENTE DE IZQUIERDA");
@@ -115,7 +115,7 @@ void listaMesaInsertarSgte (nodoListaMesa *&m, mesa x) {
   nodoListaMesa *nuevo = new nodoListaMesa();
   x.listaDeCandidatos = NULL;
   nuevo->info = x;
-  if (m){
+  if(m){
     nuevo->sgte = m->sgte;
     m->sgte = nuevo;
   } else {
@@ -380,7 +380,7 @@ void levantarArchivos (nodoListaMesa *&p) {
 char mostrarMenu() {
   cout << "*******************************  BIENVENIDO  *******************************" << endl << endl;
   cout << "                           SELECCIONE UNA OPCION:" << endl;
-  cout << endl << "            '0' PARA BUSCAR UNA MESA POR SU NRO. CORRESPONDIENTE." << endl;
+  cout << endl << "            '0' PARA BUSCAR UNA MESA POR SU NRO. DE COMUNA CORRESPONDIENTE." << endl;
   cout << "            '1' PARA AGREGAR UNA NUEVA MESA." << endl;
   cout << "            '2' PARA AGREGAR UN NUEVO CANDIDATO." << endl; //ALMOST DONE
   cout << "            '3' PARA ORDENAR POR NUMERO DE MESA." << endl;
@@ -448,7 +448,7 @@ void insertarNuevaMesaMenu (nodoListaMesa *&m) {
 void insertarNuevoCandidatoMenu (nodoListaMesa *&m, nodoListaCandidatos *&c) {
   nodoListaMesa *p=NULL;
   int comunaDeseada;
-  cout << "**********************  INSERTAR UNA NUEVA CANDITATO    *********************" << endl << endl;
+  cout << "**********************  INSERTAR UN/A NUEVO/A CANDIDATO/A    *********************" << endl << endl;
   cout << "INGRESE NRO. DE COMUNA DE LA MESA CORRESPONDIENTE: ";
   cin >> comunaDeseada;
   p=buscarMesaPorComuna(m,comunaDeseada);
@@ -458,16 +458,16 @@ void insertarNuevoCandidatoMenu (nodoListaMesa *&m, nodoListaCandidatos *&c) {
     cin >> nuevoCandidato.nombreCandidato;
     cout << "       INGRESE APELLIDO DEL CANDIDATO: ";
     cin >> nuevoCandidato.apellidoCandidato;
-    if(buscarCandidatosPorNombreYApellido(p->info.listaDeCandidatos,nuevoCandidato.nombreCandidato,nuevoCandidato.apellidoCandidato))
+    if(buscarCandidatosPorNombreYApellido(p->info.listaDeCandidatos, nuevoCandidato.nombreCandidato, nuevoCandidato.apellidoCandidato))
       cout << endl <<"        ERROR: EL/LA CANDIDAT@ " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " YA SE ENCUENTRA INGRESADO." << endl;
     else {
       cout << "       INGRESE AGRUPACION POLITICA: ";
       cin >> nuevoCandidato.agrupacionPolitica;
       cout << "       INGRESE CANTIDAD DE VOTOS: ";
       cin >> nuevoCandidato.votos;
-      insertarCandidatos(m,nuevoCandidato, comunaDeseada);
+      insertarCandidatos(m, nuevoCandidato, comunaDeseada);
       system("cls");
-      cout << "**********************  INSERTAR UNA NUEVA CANDITATO    *********************" << endl << endl;
+      cout << "**********************  INSERTAR UNA NUEVA  CANDIDATO    *********************" << endl << endl;
       cout << "                   SE HA CARGADO EL CANDIDATO " << nuevoCandidato.nombreCandidato << " " << nuevoCandidato.apellidoCandidato << " CORRECTAMENTE." << endl;
     }
   }
