@@ -1,0 +1,33 @@
+<<<<<<< HEAD
+# depslib dependency file v1.0
+1509906785 source:d:\codeblocks\tp_integrador_2\ejercicio_2\main.cpp
+	<iostream>
+	<stdio.h>
+	<conio.h>
+	<cstring>
+	<stdlib.h>
+
+1509993639 source:c:\users\roy - work\desktop\tp-algoritmos\tp_integrador\ejercicio_2\main.cpp
+	<iostream>
+	<stdio.h>
+	<conio.h>
+	<cstring>
+	<stdlib.h>
+
+=======
+# depslib dependency file v1.0
+1509906785 source:d:\codeblocks\tp_integrador_2\ejercicio_2\main.cpp
+	<iostream>
+	<stdio.h>
+	<conio.h>
+	<cstring>
+	<stdlib.h>
+
+1509926245 source:c:\users\karen\desktop\ejercicio_2\main.cpp
+	<iostream>
+	<stdio.h>
+	<conio.h>
+	<cstring>
+	<stdlib.h>
+
+>>>>>>> 49257673c7c9e6eb098de085bcb55b6780b606ad
