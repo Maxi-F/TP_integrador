@@ -15,6 +15,7 @@ Candidatos:
  
 
 Aquellos se encuentran precargados en archivos binarios.
+
 El programa deberá ser capaz de:
 
 1.	Levantar los archivos "archivocandidatos.bin" y "archivomesas.bin".
